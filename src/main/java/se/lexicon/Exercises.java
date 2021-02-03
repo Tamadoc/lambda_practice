@@ -146,6 +146,10 @@ public class Exercises {
     public static void exercise9(String message) {
         System.out.println(message);
         //Write your code here
+        Predicate<Person> filter = person -> person.getLastName().contains(person.getFirstName());
+        Consumer<Person> printPerson = System.out::println;
+
+        storage.findAndDo(filter, printPerson);
 
         System.out.println("----------------------");
     }
@@ -156,10 +160,12 @@ public class Exercises {
     public static void exercise10(String message) {
         System.out.println(message);
         //Write your code here
-        StringBuilder sb = new StringBuilder();
-        Predicate<Person> firstNamePalindrome = person ->
-                new StringBuilder(person.getFirstName()).reverse().toString().equalsIgnoreCase(person.getFirstName());
+        Predicate<Person> firstNamePalindrome =
+                person -> new StringBuilder(person.getFirstName()).reverse()
+                        .toString().equalsIgnoreCase(person.getFirstName());
+        Consumer<Person> printPerson = System.out::println;
 
+        storage.findAndDo(firstNamePalindrome, printPerson);
 
         System.out.println("----------------------");
     }
