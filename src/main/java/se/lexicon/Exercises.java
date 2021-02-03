@@ -181,7 +181,6 @@ public class Exercises {
         Comparator<Person> compareByBirthdate = Comparator.comparing(Person::getBirthDate);
 
         List<Person> sortedPersons = storage.findAndSort(filter, compareByBirthdate);
-
         sortedPersons.forEach(System.out::println);
 
         System.out.println("----------------------");
@@ -193,6 +192,11 @@ public class Exercises {
     public static void exercise12(String message) {
         System.out.println(message);
         //Write your code here
+        Predicate<Person> filter = person -> person.getBirthDate().isBefore(LocalDate.of(1950, 1, 1));
+        Comparator<Person> compareByBirthdate = Comparator.comparing(Person::getBirthDate).reversed();
+
+        List<Person> sortedPersons = storage.findAndSort(filter, compareByBirthdate);
+        sortedPersons.forEach(System.out::println);
 
         System.out.println("----------------------");
     }
@@ -203,6 +207,14 @@ public class Exercises {
     public static void exercise13(String message) {
         System.out.println(message);
         //Write your code here
+        Comparator<Person> compareNested =
+                Comparator.comparing(Person::getLastName).thenComparing(Person::getFirstName).thenComparing(Person::getBirthDate);
+        Consumer<Person> printResults =
+                person -> System.out.println(person.getLastName() + ", " + person.getFirstName() + ". Born: " + person.getBirthDate());
+
+        List<Person> sortedPersons = storage.findAndSort(compareNested);
+        sortedPersons.forEach(printResults);
+
 
         System.out.println("----------------------");
     }
