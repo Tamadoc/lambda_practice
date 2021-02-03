@@ -7,6 +7,7 @@ import se.lexicon.model.Person;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -132,6 +133,9 @@ public class Exercises {
     public static void exercise8(String message) {
         System.out.println(message);
         //Write your code here
+        Predicate<Person> filter = person -> person.getFirstName().equalsIgnoreCase("Ulf");
+        Consumer<Person> printPerson = System.out::println;
+        storage.findAndDo(filter, printPerson);
 
         System.out.println("----------------------");
     }
