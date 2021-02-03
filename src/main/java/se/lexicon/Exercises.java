@@ -1,8 +1,10 @@
 package se.lexicon;
 
 import se.lexicon.data.DataStorage;
+import se.lexicon.model.Gender;
 import se.lexicon.model.Person;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -16,12 +18,10 @@ public class Exercises {
     public static void exercise1(String message){
         System.out.println(message);
         //Write your code here
-        Predicate<Person> filter = person -> person.getFirstName().equals("Erik");
+        Predicate<Person> filter = person -> person.getFirstName().equalsIgnoreCase("Erik");
         List<Person> result = storage.findMany(filter);
 
-        for (Person person : result) {
-            System.out.println(person);
-        }
+        result.forEach(person -> System.out.println(person));
 
         System.out.println("----------------------");
     }
@@ -32,6 +32,10 @@ public class Exercises {
     public static void exercise2(String message){
         System.out.println(message);
         //Write your code here
+        Predicate<Person> filter = person -> person.getGender().equals(Gender.FEMALE);
+        List<Person> result = storage.findMany(filter);
+
+        result.forEach(person -> System.out.println(person));
 
         System.out.println("----------------------");
     }
@@ -42,6 +46,10 @@ public class Exercises {
     public static void exercise3(String message){
         System.out.println(message);
         //Write your code here
+        Predicate<Person> filter = person -> person.getBirthDate().isAfter(LocalDate.of(1999,12,31));
+        List<Person> result = storage.findMany(filter);
+
+        result.forEach(person -> System.out.println(person));
 
         System.out.println("----------------------");
     }
@@ -52,6 +60,11 @@ public class Exercises {
     public static void exercise4(String message){
         System.out.println(message);
         //Write your code here
+        Predicate<Person> filter = person -> person.getId() == 123;
+        List<Person> result = storage.findMany(filter);
+
+        result.forEach(person -> System.out.println(person));
+
 
         System.out.println("----------------------");
 
@@ -64,6 +77,13 @@ public class Exercises {
     public static void exercise5(String message){
         System.out.println(message);
         //Write your code here
+        //Code in progress.
+        //Predicate<Person> filter = person -> person.getId() == 456;
+        //function<Person, String> =
+        //List<Person> result = storage.findOneAndMapToString(filter, function);
+
+        //result.forEach(person -> System.out.println(person));
+
 
         System.out.println("----------------------");
     }
